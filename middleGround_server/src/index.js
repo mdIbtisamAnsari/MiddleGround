@@ -4,12 +4,10 @@ import { app } from "./app.js";
 
 connectDB()
   .then(() => {
-    app.listen(process.env.PORT || 8000, '0.0.0.0', () => {
+    app.listen(process.env.PORT || 8000, "0.0.0.0", () => {
       console.log(`surver is running on port ${process.env.PORT || 8000}`);
     });
   })
   .catch((err) => {
     console.log("Error Connecting DataBase", err);
   });
-
-
