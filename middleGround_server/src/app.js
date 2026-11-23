@@ -1,8 +1,10 @@
 import express, { urlencoded } from "express";
 import cors from "cors"
 import { ApiError } from "./utils/apiError.js";
+import Redis from "ioredis";
 
 const app = express();
+export const redis = new Redis(process.env.REDIS_URL || "redis://localhost:6379");
 
 const errorHandler = (err, req, res, next) => {
     let error = err;
@@ -30,6 +32,11 @@ app.use(cors(
 ))
 app.use(errorHandler);
 
-// importing routes later
+
+import userRouter from "./routes/user.routes.js";
+
+
+app.use("/user", userRouter);
+
 
 export { app };

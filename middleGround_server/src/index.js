@@ -1,6 +1,11 @@
 import connectDB from "./db/index.js";
-import { app } from "./app.js";
+import { app, redis } from "./app.js";
 
+
+(async function main() {
+  const reply =  await redis.ping();
+  console.log("Redis connected", reply)
+})()
 
 connectDB()
   .then(() => {
